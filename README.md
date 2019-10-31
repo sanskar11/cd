@@ -1,4 +1,4 @@
-**This is a modified version of cd made by me.**
+**This is a modified version of cd made by me(Sanskar).**
 
 **This supports command like cd ... like zsh**
 
