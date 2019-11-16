@@ -1,32 +1,39 @@
 #!/bin/bash
 #echo start$0end
 #echo sanskar
-builtin cd $1
-if [ $? == 1 ]
-then 
-	a=""
-	sh="${1:0:2}"
-#	echo $sh
-	if [ $sh == ".." ]
+#echo $#
+if [ $# == 0 ]
+then
+	builtin cd
+else
+	builtin cd "$1"
+	if [ $? == 1 ]
 	then
-		str=""
-		for (( i=0; i<${#1}; i++ ))
-		do
-			str="$str."
-		done
-		#echo $str
-		if [ $str == $1 ]
-		then 
-			for (( i=1; i<${#1}; i++ ))
+		a=""
+		sh="${1:0:2}"
+	#	echo $sh
+		if [ $sh == ".." ]
+		then
+			str=""
+			for (( i=0; i<${#1}; i++ ))
 			do
-			#echo sanskar
-			a="$a../"	
+				str="$str."
 			done
-			echo Replacing $1 with $a
-			builtin cd $a
+			#echo $str
+			if [ $str == $1 ]
+			then 
+				for (( i=1; i<${#1}; i++ ))
+				do
+				#echo sanskar
+				a="$a../"	
+				done
+				echo Replacing $1 with $a
+				builtin cd $a
+			fi
+			unset a
+			unset str
+			unset sh
 		fi
-		unset a
-		unset str
-		unset sh
 	fi
 fi
+
